@@ -1,0 +1,238 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: 100%;
+  background: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+
+/*-- newsletter --*/
+.newsletter {
+  background: #3c43a4;
+  padding: 3em 0;
+}
+.newsletter_left h3 {
+  font-size: 2em;
+  color: #fff;
+}
+.newsletter_left p {
+  color: #bfbfbf;
+  line-height: 1.8em;
+  margin-top: 0.5em;
+  font-weight: 100;
+}
+.newsletter_right {
+  margin-top: 0.8em;
+}
+.newsletter_right input[type="email"] {
+  outline: none;
+  padding: 10px;
+  color: #212121;
+  font-size: 14px;
+  width: 70%;
+  background: #fff;
+  border: none;
+  float: left;
+}
+.newsletter_right input[type="submit"] {
+  outline: none;
+  padding: 9px 0;
+  width: 15%;
+  background: url(../images/img-sp.png) no-repeat 26px -65px #ff5063;
+  border: none;
+  transition: 0.5s all;
+}
+.newsletter_right input[type="submit"]:hover {
+  background-color: #212121;
+}
+/*-- //newsletter --*/
+
+/*-- footer --*/
+.footer {
+  padding: 4em 0;
+  background: #fff;
+}
+.footer_grid h3 {
+  color: #212121;
+  font-size: 1.5em;
+  margin-bottom: 2em;
+  padding-bottom: 0.5em;
+  position: relative;
+  text-transform: uppercase;
+}
+.footer_grid h3:after {
+  content: "";
+  background: #3c43a4;
+  width: 30%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.footer_grid p {
+  color: #999;
+  line-height: 1.8em;
+  margin-bottom: 2em;
+}
+.footer_grid ul li {
+  list-style-type: none;
+  margin-bottom: 1em;
+  color: #999;
+  font-size: 14px;
+}
+.footer_grid ul.address li i {
+  color: #414141;
+  border: 1px solid #414141;
+  padding: 0.5em;
+  margin-right: 1em;
+}
+/* .footer_grid ul.address li span {
+  display: block;
+  margin-left: 3em;
+} */
+.footer_grid ul li a {
+  color: #999;
+  text-decoration: none;
+}
+.footer_grid ul li a:hover {
+  color: #212121;
+}
+.footer_grid ul.info li a {
+  padding-left: 2.2em;
+  background: url(../images/img-sp.png) no-repeat -6px -98px;
+}
+.footer_grid h4 {
+  margin: 2em 0 1em;
+  font-size: 1.2em;
+  color: #3c43a4;
+}
+/*-- social-buttons --*/
+.social-icon ul {
+  position: relative;
+  margin: 0;
+  padding: 3px;
+  display: inline-flex;
+}
+
+.social-icon > ul li {
+  position: relative;
+  list-style: none;
+  width: 30px;
+  height: 30px;
+  margin: 0 15px;
+  transform: rotate(-25deg) skew(20deg);
+  background: rgb(145, 145, 145);
+}
+.social-icon > ul li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px !important;
+}
+
+.social-icon > ul li:hover span {
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.social-icon > ul li:hover span:nth-child(5) {
+  transform: translate(40px, -40px);
+  opacity: 1;
+}
+.social-icon > ul li:hover span:nth-child(4) {
+  transform: translate(30px, -30px);
+  opacity: 0.8;
+}
+.social-icon > ul li:hover span:nth-child(3) {
+  transform: translate(20px, -20px);
+  opacity: 0.6;
+}
+.social-icon > ul li:hover span:nth-child(2) {
+  transform: translate(10px, -10px);
+  opacity: 0.4;
+}
+.social-icon > ul li:hover span:nth-child(1) {
+  transform: translate(0, 0);
+  opacity: 0.2;
+}
+
+.social-icon > ul li:nth-child(1) span {
+  background: #3b5999;
+}
+.social-icon > ul li:nth-child(2) span {
+  background: #55acee;
+}
+.social-icon > ul li:nth-child(3) span {
+  background: #dd4b39;
+}
+.social-icon > ul li:nth-child(4) span {
+  background: #0077b5;
+}
+.social-icon > ul li:nth-child(5) span {
+  background: #ee2b4f;
+}
+
+/* social icon END */
+.footer-copy1 {
+  position: relative;
+  padding: 2em 0 0;
+  border-bottom: 1px solid #d6d6d6;
+}
+.footer-copy-pos {
+  position: absolute;
+  right: 12%;
+  bottom: -75%;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #ff5063;
+  border-radius: 25px;
+  transition: 0.5s all;
+}
+.footer-copy-pos:hover {
+  box-shadow: 0px 0px 30px 5px #ff5063;
+}
+.footer-copy p {
+  margin: 4em 0 0;
+  text-align: center;
+  color: #999;
+  line-height: 1.8em;
+}
+.footer-copy p a {
+  color: #3c43a4;
+  text-decoration: none;
+}
+.footer-copy p a:hover {
+  color: #999;
+}
+/*-- //footer --*/
+
+
+section {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  
+}
+section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vh;
+  height: 100vh;
+  background: #3c43a4;
+  border-radius: 50%;
+  transform-origin: bottom;
+  transform: translateX(-50%) scale(4);

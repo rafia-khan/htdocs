@@ -1,0 +1,210 @@
+Table: customers
+
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+
+Table: orders
+
+
+
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_date DATE,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+
+Table: products
+
+
+CREATE TABLE products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(100),
+    price DECIMAL(10, 2)
+);
+
+
+Table: order_items
+
+CREATE TABLE order_items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+Table: suppliers
+
+CREATE TABLE suppliers (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(100),
+    contact_name VARCHAR(100)
+);
+
+
+sql
+
+CREATE VIEW customer_orders AS
+SELECT
+    c.customer_id,
+    c.name AS customer_name,
+    o.order_id,
+    o.order_date,
+    p.product_name,
+    oi.quantity,
+    s.supplier_name
+FROM
+    customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+    JOIN order_items oi ON o.order_id = oi.order_id
+    JOIN products p ON oi.product_id = p.product_id
+    LEFT JOIN suppliers s ON p.product_id = s.supplier_id;
+
+
+
+php 
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "your_database_name"; // Replace with your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query the view
+$sql = "SELECT * FROM customer_orders";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table border='1'>
+            <tr>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Supplier Name</th>
+            </tr>";
+    // Output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>" . $row["customer_id"] . "</td>
+                <td>" . $row["customer_name"] . "</td>
+                <td>" . $row["order_id"] . "</td>
+                <td>" . $row["order_date"] . "</td>
+                <td>" . $row["product_name"] . "</td>
+                <td>" . $row["quantity"] . "</td>
+                <td>" . $row["supplier_name"] . "</td>
+              </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
+
+
+
+Relationships
+Customers to Orders
+
+One-to-Many relationship: One customer can have multiple orders.
+Orders to Order_Items
+
+One-to-Many relationship: One order can have multiple order items.
+Products to Order_Items
+
+One-to-Many relationship: One product can be in multiple order items.
+Products to Suppliers
+
+One-to-One relationship (or potentially One-to-Many if one supplier can supply multiple products): Each product is supplied by one supplier.
+
+
+
+
+Add Relationships:
+
+Use arrows to indicate relationships between entities. Label the relationships as follows:
+Customers to Orders: One-to-Many
+Orders to Order_Items: One-to-Many
+Order_Items to Products: Many-to-One
+Products to Suppliers: One-to-One (or potentially One-to-Many)
+
+
+
+ব্যাখ্যা:
+CREATE VIEW customer_orders AS:
+
+এই কমান্ডটি একটি ভিউ তৈরি করে যার নাম customer_orders।
+ভিউ হচ্ছে একটি ভার্চুয়াল টেবিল যা SQL কোয়েরির ফলাফল সংরক্ষণ করে।
+SELECT:
+
+এই কমান্ডটি নির্দিষ্ট কলামগুলো নির্বাচন করে যা ভিউতে অন্তর্ভুক্ত হবে।
+c.customer_id, c.name AS customer_name:
+
+customers টেবিল থেকে customer_id এবং name কলামগুলো নির্বাচন করা হয়েছে।
+name কলামটি customer_name নামে প্রদর্শিত হবে।
+o
+
+
+
+FROM customers c:
+
+কোয়েরিটি শুরু হচ্ছে customers টেবিল থেকে, যা c নামে সংক্ষিপ্ত করা হয়েছে।
+JOIN orders o ON c.customer_id = o.customer_id:
+
+customers টেবিলের customer_id এবং orders টেবিলের customer_id এর মধ্যে যোগদান করা হয়েছে, যাতে প্রতিটি গ্রাহকের সাথে তার অর্ডারগুলিকে সম্পর্কিত করা যায়।
+JOIN order_items oi ON o.order_id = oi.order_id:
+
+orders টেবিলের order_id এবং order_items টেবিলের order_id এর মধ্যে যোগদান করা হয়েছে, যাতে প্রতিটি অর্ডারের সাথে তার আইটেমগুলিকে সম্পর্কিত করা যায়।
+JOIN products p ON oi.product_id = p.product_id:
+
+order_items টেবিলের product_id এবং products টেবিলের product_id এর মধ্যে যোগদান করা হয়েছে, যাতে প্রতিটি অর্ডার আইটেমের সাথে সংশ্লিষ্ট পণ্যের তথ্য সম্পর্কিত করা যায়।
+LEFT JOIN suppliers s ON p.product_id = s.supplier_id:
+
+products টেবিলের product_id এবং suppliers টেবিলের supplier_id এর মধ্যে বাম যোগদান (LEFT JOIN) করা হয়েছে, যাতে পণ্যগুলির সাথে তাদের সরবরাহকারীদের তথ্য সম্পর্কিত করা যায়। বাম যোগদানটি নিশ্চিত করে যে, এমনকি যদি কোনো পণ্যের সরবরাহকারীর তথ্য না থাকে, তবুও পণ্যের অন্যান্য তথ্য ভিউতে অন্তর্ভুক্ত থাকবে।
+
+
+
+
+
+[Customers]--------------------<Orders>-----------------<Order_Items>----------------<Products>------------------<Suppliers>
++ customer_id (PK)             + order_id (PK)          + order_item_id (PK)         + product_id (PK)          + supplier_id (PK)
++ name                         + order_date             + order_id (FK)              + product_name             + supplier_name
++ email                        + customer_id (FK)       + product_id (FK)            + price                    + contact_name
+                                                         + quantity
+
+Relationships:
+- Customers to Orders: One customer to many orders
+- Orders to Order_Items: One order to many order items
+- Order_Items to Products: Many order items to one product
+- Products to Suppliers: One product to one supplier
+
+
+
+
+
+
+
+
+
+
+
+
+

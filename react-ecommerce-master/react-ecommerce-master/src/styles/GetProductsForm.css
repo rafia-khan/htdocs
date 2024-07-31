@@ -1,0 +1,64 @@
+.clothes-accessories{
+    margin-top: 60px;
+}
+.clothes-accessories-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px; 
+  }
+  
+  .clothes-accessories-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .clothes-accessories-group {
+    margin-right: 60px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    margin-right: 10px;
+    font-weight: bold; 
+  }
+  
+.getProductsBtns {
+    background-color: #9D9D9D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+input[type = reset]{
+    margin-right: 20px;
+}
+
+.getProductsBtns:hover {
+    background-color: #7C7C7C; 
+}
+  
+  input[type=text],
+  input[type=range] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+  
+  input[type=checkbox] {
+    margin-right: 5px; 
+  }
+.pageTitle{
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}

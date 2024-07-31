@@ -1,0 +1,28 @@
+
+.sidebar {
+    background-color: #953e95;;
+    color: rgb(21, 17, 17);
+    width: 200px;
+    min-height: 100vh;
+    padding: 1rem;
+    align-items:center;
+  }
+  
+  .sidebar-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-links li {
+    margin: 1rem 0;
+  }
+  
+  .sidebar-links a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .sidebar-links a:hover {
+    text-decoration: underline;
+  }
+  
